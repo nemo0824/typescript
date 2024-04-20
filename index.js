@@ -75,3 +75,76 @@ var 테스트용변수 = {
 };
 var 테스트용변수3 = { name: '임재원', phone: 41465622, email: "nemo0824" };
 var 테스트용변수4 = { name: '임재원', phone: 41465622, email: "nemo0824", adult: true };
+//(강의) Literal Types --- 변수에 뭐가들어올지 더 엄격하게 관리가능 , 자동완성 가능  
+var 이름1;
+이름1 = 123;
+// 매개변수로 무조건 '리터럴만'이 들어올수있음
+// reutrn 으로 1 또는 2만 나와야함 
+function 함수리터럴(a) {
+    return 1;
+}
+function 가위바위보함수(a) {
+    return ['보'];
+}
+// literal type은 const변수의 업그레이드버전.
+// as const ---- 1.object value값을 그대로 타입으로 지정해줌 2. object 속성들에게 모두 readonly 붙여줌
+var 자료 = {
+    name: 'kim'
+};
+function 자료내함수(a) {
+}
+자료내함수(자료.name);
+// 객체안에있는 메서드 타입지정
+var 회원정보 = {
+    name: 'Lim',
+    age: 29,
+    plusOne: function (a) {
+        return a + 1;
+    },
+    ChangeName: function () {
+        console.log("changeName입니다");
+    }
+};
+회원정보.plusOne(2);
+회원정보.ChangeName();
+var cutZero = function (a) {
+    var result = a.replace(/^0+/, '');
+    return result;
+};
+var removeDash = function (a) {
+    var result = a.replace(/-/g, "");
+    return parseFloat(result);
+};
+function 홍길동(a) {
+    if (a) {
+        return console.log("안녕하세요" + a);
+    }
+    else {
+        return console.log("이름이없습니다");
+    }
+}
+//숫자 문자 자릿수 세어주는 출력해주는 함수
+function 자릿수카운트(a) {
+    return a.toString().length;
+}
+function 자릿수카운트1(a) {
+    if (typeof (a) === "string") {
+        return a.length;
+    }
+    else {
+        return a.toString().length;
+    }
+}
+function 결혼확률(수입, 집, 점수) {
+    var sum = 0;
+    sum = sum + 수입 * 1;
+    if (집 === true) {
+        sum = sum + 500;
+    }
+    if (점수 === "상") {
+        sum = sum + 100;
+    }
+    if (sum >= 600) {
+        return '결혼가능';
+    }
+}

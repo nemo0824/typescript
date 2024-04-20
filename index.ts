@@ -149,3 +149,115 @@ function 내함수1(x:string|number) {
 
     let 테스트용변수4: Test3 & Test4  = {name: '임재원', phone: 41465622 , email:"nemo0824", adult: true}
    
+
+    //(강의) Literal Types --- 변수에 뭐가들어올지 더 엄격하게 관리가능 , 자동완성 가능  
+    let 이름1: 123
+    이름1 = 123;
+
+    // 매개변수로 무조건 '리터럴만'이 들어올수있음
+    // reutrn 으로 1 또는 2만 나와야함 
+    function 함수리터럴(a:'리터럴만'):1|2{
+        return 1
+    }
+    
+    function 가위바위보함수(a:'가위'| '바위'| '보'):('가위'|'바위'|'보')[]{
+        return ['보']
+
+    }
+    // literal type은 const변수의 업그레이드버전.
+
+    // as const ---- 1.object value값을 그대로 타입으로 지정해줌 2. object 속성들에게 모두 readonly 붙여줌
+    var 자료 = {
+        name: 'kim'
+    } as const
+
+    function 자료내함수(a:'kim'){
+
+    }
+    
+    자료내함수(자료.name)
+
+
+    // 함수타입 type
+    type plusOne1 = (a:number)=> number
+
+    // 객체안에있는 메서드 타입지정
+
+    let 회원정보:Member ={
+        name : 'Lim',
+        age: 29,
+        plusOne(a){
+            return a +1;
+        },
+        ChangeName: ()=>{
+            console.log("changeName입니다")
+        }
+
+             
+    }
+
+    회원정보.plusOne(2);
+    회원정보.ChangeName();
+
+    // 숙제 plusOne 숫자 넣어서 숫자뱉기 changeName return x 
+
+    type Member = {
+        name:string,
+        age:number,
+        plusOne:(a:number)=>number,
+        ChangeName:()=>void
+    }
+
+    // 숙제
+    // 1.cutZero 라는 함수 만드릭 -> 문자를 하나입력하면 맨앞에 '0'이있으면 제거하고 문자 type 으로 return 해줍니다
+    // 2. removeDash() 함수만들기 -> 문자를 하나입력하면 대시기호가 - 있으면 전부제거 하고 그걸 숫자 type으로 return 
+
+    type CutType = (a:string)=>string
+    let cutZero:CutType = function(a){
+        let result = a.replace(/^0+/,'')
+        return result
+    }
+
+    let removeDash = function(a:string):number{   
+        let result = a.replace(/-/g,"");
+        return parseFloat(result)
+
+    }
+
+
+    function 홍길동 (a? :string) {
+       if(a){
+        return console.log("안녕하세요" + a)
+       }else{
+        return console.log("이름이없습니다")
+       }
+        
+    }
+
+    //숫자 문자 자릿수 세어주는 출력해주는 함수
+    
+    function 자릿수카운트 (a :string | number) :number {
+        return a.toString().length
+    }
+
+    function 자릿수카운트1 (a: string|number) : number{
+        if(typeof(a) === "string"){
+            return a.length
+        }else{
+            return a.toString().length
+        }
+    }
+
+    function 결혼확률(수입:number, 집:boolean, 점수:string):string|void{
+        let sum:number = 0;
+        sum = sum + 수입 * 1    
+        if(집 === true){
+            sum = sum + 500
+        }
+        if(점수 === "상"){
+            sum = sum + 100
+        }
+        if(sum >= 600){
+            return '결혼가능'
+        }
+    }
