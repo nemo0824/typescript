@@ -216,9 +216,73 @@ var Person = /** @class */ (function () {
         this.width = 111;
         this.height = 222;
     }
+    Person.prototype.함수 = function (a) {
+        console.log("안녕 prototype 연습" + a);
+    };
     return Person;
 }());
 var 사람1 = new Person();
 console.log(사람1);
 var 사람2 = new Person();
 console.log(사람2);
+var Car = /** @class */ (function () {
+    function Car(a, b) {
+        this.model = a;
+        this.price = b;
+    }
+    Car.prototype.tax = function () {
+        return this.price * 0.1;
+    };
+    return Car;
+}());
+var car1 = new Car("소나타", 3000);
+var Word = /** @class */ (function () {
+    function Word() {
+        var param = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            param[_i] = arguments[_i];
+        }
+        var 숫자들 = [];
+        var 문자들 = [];
+        param.forEach(function (i) {
+            if (typeof i === "string") {
+                문자들.push(i);
+            }
+            else {
+                숫자들.push(i);
+            }
+        });
+        this.num = 숫자들;
+        this.str = 문자들;
+    }
+    return Word;
+}());
+var obj = new Word("123", 4, 5, 6, "123");
+var person = { student: true, age: 20 };
+function 함수(_a) {
+    var student = _a.student, age = _a.age;
+    console.log(student, age);
+}
+함수({ student: true, age: 20 });
+function 최댓값() {
+    var a = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        a[_i] = arguments[_i];
+    }
+    var result = 0;
+    a.forEach(function (a) {
+        if (result < a) {
+            result = a;
+        }
+    });
+    return result;
+}
+function destruct(_a) {
+    var user = _a.user, comment = _a.comment, admin = _a.admin;
+    console.log(user, comment, admin);
+}
+destruct({ user: "kim", comment: [1, 2, 3, 4, 5], admin: false });
+function destructArr(_a) {
+    var a = _a[0], b = _a[1], c = _a[2];
+    console.log(a, b, c);
+}

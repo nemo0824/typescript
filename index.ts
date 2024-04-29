@@ -319,9 +319,80 @@ class Person {
     this.width = 111;
     this.height = 222;
   }
+  함수(a: string) {
+    console.log("안녕 prototype 연습" + a);
+  }
 }
 
 let 사람1 = new Person();
 console.log(사람1);
 let 사람2 = new Person();
 console.log(사람2);
+
+class Car {
+  model: string;
+  price: number;
+  constructor(a: string, b: number) {
+    this.model = a;
+    this.price = b;
+  }
+  tax(): number {
+    return this.price * 0.1;
+  }
+}
+let car1 = new Car("소나타", 3000);
+
+class Word {
+  num;
+  str;
+  constructor(...param: (number | string)[]) {
+    let 숫자들: number[] = [];
+    let 문자들: string[] = [];
+
+    param.forEach((i) => {
+      if (typeof i === "string") {
+        문자들.push(i);
+      } else {
+        숫자들.push(i);
+      }
+    });
+    this.num = 숫자들;
+    this.str = 문자들;
+  }
+}
+let obj = new Word("123", 4, 5, 6, "123");
+
+let person = { student: true, age: 20 };
+
+function 함수({ student, age }: { student: boolean; age: number }) {
+  console.log(student, age);
+}
+함수({ student: true, age: 20 });
+
+function 최댓값(...a: number[]) {
+  let result = 0;
+  a.forEach((a) => {
+    if (result < a) {
+      result = a;
+    }
+  });
+  return result;
+}
+
+type Test5 = {
+  user: string;
+  comment: number[];
+  admin: boolean;
+};
+
+function destruct({ user, comment, admin }: Test5) {
+  console.log(user, comment, admin);
+}
+
+destruct({ user: "kim", comment: [1, 2, 3, 4, 5], admin: false });
+
+type Test6 = (number | string | boolean)[];
+
+function destructArr([a, b, c]: Test6) {
+  console.log(a, b, c);
+}
