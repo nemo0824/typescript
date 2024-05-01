@@ -286,3 +286,20 @@ function destructArr(_a) {
     var a = _a[0], b = _a[1], c = _a[2];
     console.log(a, b, c);
 }
+var TestPrivate = /** @class */ (function () {
+    function TestPrivate(a) {
+        this.familyName = "Lim";
+        this.name = this.familyName + a;
+    }
+    TestPrivate.prototype.changefamilyName = function () {
+        this.familyName = "Park";
+    };
+    return TestPrivate;
+}());
+var 유저3 = new TestPrivate("재원");
+console.log(유저3);
+유저3.changefamilyName();
+console.log(유저3);
+// 유저1.name = "park";
+// 유저1.familyName
+// private은 클래스 밖에서 바꿀수가 없음
